@@ -6,7 +6,6 @@ let settings = require('./hof.settings');
 const config = require('./config.js');
 const busboy = require('busboy');
 const bl = require('bl');
-const mockAPIs = require('./mock-apis');
 const _ = require('lodash');
 
 settings = Object.assign({}, settings, {
@@ -16,9 +15,6 @@ settings = Object.assign({}, settings, {
 
 const app = hof(settings);
 
-if (config.useMocks) {
-  app.use(mockAPIs);
-}
 
 app.use((req, res, next) => {
   // Set HTML Language
