@@ -2,7 +2,6 @@
 /* eslint no-process-env: 0 */
 
 const env = process.env.NODE_ENV || 'production';
-const useMocks = process.env.USE_MOCKS === 'true' || !env;
 
 module.exports = {
   env: env,
@@ -10,7 +9,6 @@ module.exports = {
   csp: {
     imgSrc: ['data:']
   },
-  useMocks: useMocks,
   upload: {
     maxFileSizeInBytes: 100 * 1024 * 1024, // 100MiB in bytes
     maxFileSize: '100mb',
@@ -27,10 +25,7 @@ module.exports = {
       'application/vnd.oasis.opendocument.text',
       'application/vnd.oasis.opendocument.spreadsheet'
     ],
-    // if mocks set use file service served up by app otherwise use filevault's port 3000
-    hostname: !useMocks && process.env.FILE_VAULT_URL ?
-      process.env.FILE_VAULT_URL :
-      `http://localhost:${useMocks ? (process.env.PORT || 8080) : 3000}/file`
+    hostname: process.env.FILE_VAULT_URL
   },
   keycloak: {
     token: process.env.KEYCLOAK_TOKEN_URL,
