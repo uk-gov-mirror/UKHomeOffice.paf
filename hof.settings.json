@@ -6,6 +6,7 @@
     "./apps/paf/behaviours/set-navigation-section",
     "./apps/paf/behaviours/time-formatter"
   ],
+  "translations": "./apps/common/translations",
   "routes": [
     "./apps/common",
     "./apps/paf"
